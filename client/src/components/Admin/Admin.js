@@ -1,13 +1,13 @@
 import React from "react";
-import { Container, Grow, Grid } from "@material-ui/core";
+import { Container, Grow, Grid, Button } from "@material-ui/core";
 import Tours from "../Tours/Tours";
 import Form from "../Form/Form";
 import { useEffect, useState } from "react";
 import { getTours } from "../../actions/tours";
 import { useDispatch } from "react-redux";
 import useStyles from "./styles";
-import Footer from "../nav_bar/Footer";
-const Home = () => {
+import AddTour from "./AddTour";
+const Admin = () => {
   const classes = useStyles();
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
@@ -20,25 +20,28 @@ const Home = () => {
     <>
       <Grow in>
         <Container className={classes.mainContainer}>
-          <Tours setCurrentId={setCurrentId} />
-          {/* <Grid
-            container
-            justify="space-between"
-            alignItems="stretch"
-            spacing={12}
-            item
-            sm={3}
+          {/* <Tours setCurrentId={setCurrentId} /> */}
+          <Button
+            className={classes.btn}
+            to="/auth"
+            variant="contained"
+            color="primary"
           >
-            {/* <Grid item xs={12} sm={6}>
-          </Grid> */}
-          {/* <Grid item xs={12} sm={4}>
-            <Form currentId={currentId} setCurrentId={setCurrentId} />
-          </Grid> 
-          </Grid> */}
+            Add Tour
+          </Button>
+          <Button
+            // component={Link}
+            className={classes.btn}
+            to="/auth"
+            variant="contained"
+            color="primary"
+          >
+            Add Guide
+          </Button>
+          <AddTour />
         </Container>
       </Grow>
-      <Footer />
     </>
   );
 };
-export default Home;
+export default Admin;

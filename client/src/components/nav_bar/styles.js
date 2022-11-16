@@ -12,10 +12,24 @@ export default makeStyles((theme) => ({
     padding: "10px 50px",
     background: "#444",
   },
+  footerBar: {
+    // margin: "20px 0",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "1px 50px",
+    background: "#444",
+  },
   heading: {
     color: "#f7f7f7",
     // color: "#444",
     textDecoration: "none",
+  },
+  subheading: {
+    color: "#f7f7f7",
+    fontSize: "10px",
+    textAlign: "left",
   },
   image: {
     marginLeft: "15px",
@@ -36,6 +50,9 @@ export default makeStyles((theme) => ({
   },
   brandContainer: {
     display: "flex",
+    alignItems: "center",
+  },
+  brandFooterContainer: {
     alignItems: "center",
   },
   purple: {
