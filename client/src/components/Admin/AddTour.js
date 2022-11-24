@@ -54,7 +54,13 @@ function getStyles(name, personName, theme) {
 const AddTour = () => {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
-
+  const [location, setLocation] = React.useState([]);
+  const [dataLocation, setDataLocation] = React.useState({
+    description: "",
+    type: "",
+    coordinates: [],
+    day: 1,
+  });
   const handleChange = (event) => {
     const {
       target: { value },
@@ -99,12 +105,7 @@ const AddTour = () => {
       creator: e.target.value,
     });
   };
-  const descriptionHandler = (e) => {
-    setMovieName({
-      ...tour,
-      description: e.target.value,
-    });
-  };
+
   const imbdHandler = (e) => {
     setMovieName({
       ...tour,
@@ -189,24 +190,46 @@ const AddTour = () => {
       name: e.target.value,
     });
   };
+  const typeHandler = (e) => {
+    setDataLocation({
+      ...dataLocation,
+      type: e.target.value,
+    });
+  };
+  const dayHandler = (e) => {
+    setDataLocation({
+      ...dataLocation,
+      day: e.target.value,
+    });
+  };
+  const descriptionHandler = (e) => {
+    setDataLocation({
+      ...dataLocation,
+      description: e.target.value,
+    });
+  };
+  const coordinatesHandler = (e) => {
+    const temp = e.target.value.split(",");
+    setDataLocation({
+      ...dataLocation,
+      coordinates: temp,
+    });
+  };
 
-  const clearData = () => {
-    setMovieName({
-      name: "",
-      title: "",
-      creator: "",
+  // const clearData = () => {
+  //   setMovieName({
+  //     description: "",
+  //     type: "",
+  //     coordinates: [],
+  //     day: 1,
+  //   });
+  // };
+  const clearLoactionData = () => {
+    setDataLocation({
       description: "",
-      imbd: "",
-      release: "",
-      language: "",
-      resolution: "",
-      size: "",
-      tags: "",
-      quickstory: "",
-      movielink: "",
-      quality: "",
-      trailer: "",
-      img1: "",
+      type: "",
+      coordinates: [],
+      day: 1,
     });
   };
   const submitHandler = (e) => {
@@ -216,6 +239,36 @@ const AddTour = () => {
     console.log(tour);
     // clearData();
   };
+  const addLocation = () => {
+    setLocation([...location, dataLocation]);
+    console.log(location, "data loaction");
+    clearLoactionData();
+    // locationShow();
+  };
+  const locationShow = () => {
+    return location.map((data) => (
+      <>
+        <Grid item xs={12} sm={3} spacing={2}>
+          <Typography align="left">Day: {data.day}</Typography>
+          <Typography>Type: {data.type}</Typography>
+          <Typography>Description: {data.description}</Typography>
+          <Typography>
+            Coordinate: lat: {data.coordinates[0]} long: {data.coordinates[1]}
+          </Typography>
+        </Grid>
+      </>
+    ));
+  };
+  const removeDayHandler = () => {
+    let temp = location;
+    temp.pop();
+    setLocation(temp);
+    clearLoactionData();
+    // locationShow();
+    // location.pop();
+    // addLocation();
+  };
+
   return (
     <>
       <>
@@ -279,7 +332,13 @@ const AddTour = () => {
               </Grid>
               <Grid item xs={12} sm={4}>
                 <FormControl>
-                  <InputLabel id="demo-multiple-chip-label">Guide</InputLabel>
+                  <InputLabel
+                    id="demo-multiple-chip-label"
+                    style={{ paddingLeft: "8px" }}
+                  >
+                    {" "}
+                    Guide{" "}
+                  </InputLabel>
                   <Select
                     labelId="demo-multiple-chip-label"
                     id="demo-multiple-chip"
@@ -287,10 +346,20 @@ const AddTour = () => {
                     value={personName}
                     onChange={handleChange}
                     input={
-                      <OutlinedInput id="select-multiple-chip" label="Guide" />
+                      <OutlinedInput
+                        id="select-multiple-chip"
+                        label="Guide"
+                        style={{ paddingLeft: "20px" }}
+                      />
                     }
                     renderValue={(selected) => (
-                      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          gap: 0.5,
+                        }}
+                      >
                         {selected.map((value) => (
                           <Chip key={value} label={value} />
                         ))}
@@ -384,15 +453,27 @@ const AddTour = () => {
             </Grid>
             <Typography align="left">Location</Typography>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={3}>
+              {!location.length ? "--" : locationShow()}
+            </Grid>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={3} spacing={2}>
                 <TextField
                   label="Day"
                   name="Day"
                   variant="outlined"
                   required
                   fullWidth
-                  value={tour.movielink}
-                  onChange={movielinkHandler}
+                  value={dataLocation.day}
+                  onChange={dayHandler}
+                />
+                <TextField
+                  label="Lat, long"
+                  name="Coordinates"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  value={dataLocation.coordinates}
+                  onChange={coordinatesHandler}
                 />
               </Grid>
               <Grid item xs={12} sm={3}>
@@ -402,9 +483,27 @@ const AddTour = () => {
                   variant="outlined"
                   required
                   fullWidth
-                  value={tour.quality}
-                  onChange={qualityHandler}
+                  value={dataLocation.description}
+                  onChange={descriptionHandler}
                 />
+                <>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-autowidth-label">
+                      Type
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-autowidth-label"
+                      id="demo-simple-select-autowidth"
+                      autoWidth
+                      label="Difficulty"
+                      value={dataLocation.type}
+                      onChange={typeHandler}
+                    >
+                      <MenuItem value={"point"}>Point</MenuItem>
+                      <MenuItem value={"linear"}>Linear</MenuItem>
+                    </Select>
+                  </FormControl>
+                </>
               </Grid>
               <Grid item xs={12} sm={3}>
                 <Button
@@ -412,9 +511,26 @@ const AddTour = () => {
                   halfWidth
                   variant="contained"
                   color="primary"
+                  onClick={addLocation}
                 >
                   Add Day
                 </Button>
+
+                {location.length == 0 ? (
+                  ""
+                ) : (
+                  <Grid item xs={10} sm={6}>
+                    <Button
+                      type="submit"
+                      halfWidth
+                      variant="contained"
+                      color="secondary"
+                      onClick={removeDayHandler}
+                    >
+                      Remove Day
+                    </Button>
+                  </Grid>
+                )}
               </Grid>
             </Grid>
             <Typography align="left">Starting Location</Typography>

@@ -7,6 +7,10 @@ import {
   Typography,
   Container,
   TextField,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Select,
 } from "@material-ui/core";
 import useStyle from "./style";
 import LockOpenOutlined from "@material-ui/icons/LockOpenOutlined";
@@ -44,6 +48,9 @@ const Auth = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const fileUpload = (e) => {
+    console.log(e.target.value, "fille");
+  };
   const googleSuccess = async (res) => {
     const result = res?.profileObj; // optional chaining operator ?. in this if object is not avilable then it will return undefined
     const token = res?.tokenId;
@@ -75,19 +82,68 @@ const Auth = () => {
           <Grid container spacing={2}>
             {isSignup && (
               <>
-                <Input
-                  name="firstName"
-                  label="First Name"
-                  handleChange={handleChange}
-                  autoFocus
-                  half
-                />
-                <Input
-                  name="lastName"
-                  label="Last Name"
-                  handleChange={handleChange}
-                  half
-                />
+                <>
+                  <Input
+                    name="firstName"
+                    label="First Name"
+                    handleChange={handleChange}
+                    autoFocus
+                    half
+                  />
+                  <Input
+                    name="lastName"
+                    label="Last Name"
+                    handleChange={handleChange}
+                    half
+                  />
+                </>
+                <div className={classes.uploadDiv}>
+                  <label
+                    htmlFor="upload-photo"
+                    style={{ width: "100%", padding: "8px" }}
+                  >
+                    <input
+                      style={{ display: "none", padding: "8px" }}
+                      id="upload-photo"
+                      name="upload-photo"
+                      type="file"
+                      onChange={fileUpload}
+                    />
+
+                    <Button
+                      style={{
+                        alignItems: "center",
+                        width: "100%",
+                        height: "55px",
+                      }}
+                      color="secondary"
+                      variant="contained"
+                      component="span"
+                    >
+                      Upload Pic
+                    </Button>
+                  </label>
+
+                  <FormControl fullWidth style={{ padding: "8px" }}>
+                    <InputLabel
+                      id="demo-simple-select-autowidth-label"
+                      variant="outlined"
+                    >
+                      Role
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-autowidth-label"
+                      id="demo-simple-select-autowidth"
+                      // value={age}
+                      // onChange={handleChange}
+                      autoWidth
+                      label="Role"
+                    >
+                      <MenuItem value={"user"}>User</MenuItem>
+                      <MenuItem value={"guide"}>Guide</MenuItem>
+                    </Select>
+                  </FormControl>
+                </div>
               </>
             )}
             <Input

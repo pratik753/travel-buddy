@@ -7,6 +7,7 @@ import { getTours } from "../../actions/tours";
 import { useDispatch } from "react-redux";
 import useStyles from "./styles";
 import Footer from "../nav_bar/Footer";
+import TourDetail from "../Tours/TourDetail/TourDetail";
 const Home = () => {
   const classes = useStyles();
   const [currentId, setCurrentId] = useState(0);
@@ -19,23 +20,10 @@ const Home = () => {
   return (
     <>
       <Grow in>
-        <Container className={classes.mainContainer}>
-          <Tours setCurrentId={setCurrentId} />
-          {/* <Grid
-            container
-            justify="space-between"
-            alignItems="stretch"
-            spacing={12}
-            item
-            sm={3}
-          >
-            {/* <Grid item xs={12} sm={6}>
-          </Grid> */}
-          {/* <Grid item xs={12} sm={4}>
-            <Form currentId={currentId} setCurrentId={setCurrentId} />
-          </Grid> 
-          </Grid> */}
-        </Container>
+        {/* <Container className={classes.mainContainer}> */}
+        {/* <Tours setCurrentId={setCurrentId} /> */}
+        <TourDetail />
+        {/* </Container> */}
       </Grow>
       <Footer />
     </>
