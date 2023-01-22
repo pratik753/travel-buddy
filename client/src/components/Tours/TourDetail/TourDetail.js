@@ -3,10 +3,14 @@ import useStyles from "./styles";
 import logo from "../../../images/memories.png";
 import { Grid } from "@material-ui/core";
 import LanguageIcon from "@material-ui/icons/Language";
-
+import { useSelector } from "react-redux";
 const TourDetail = () => {
   const classes = useStyles();
+  const posts = useSelector((state) => state.tours);
+  console.log("bye",posts);
   return (
+    posts===null?
+    <h1>PLEASE WAIT..</h1>:(
     <div>
       <header
         style={{
@@ -279,7 +283,7 @@ const TourDetail = () => {
         </section>
       </main>
     </div>
-  );
+  ));
 };
 
 export default TourDetail;

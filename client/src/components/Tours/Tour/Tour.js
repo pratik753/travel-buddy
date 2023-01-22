@@ -20,10 +20,12 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { likePost, deletePost } from "../../../actions/tours";
+import { likePost, deletePost,getOneTour } from "../../../actions/tours";
+import { useHistory } from "react-router-dom";
 import useStyles from "./styles";
 const Tour = ({ tour, setCurrentId }) => {
   const dispatch = useDispatch();
+  const history=useHistory();
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem("profile"));
   const Likes = () => {
@@ -54,9 +56,16 @@ const Tour = ({ tour, setCurrentId }) => {
       </>
     );
   };
+  function f1(e)
+  {
+    console.log("hi",tour.id);
+    dispatch(getOneTour(tour.id));
+    history.push(`/tour/:${tour.id}`);
+
+  }
   console.log(tour, "tour");
   return (
-    <Card sx={{ maxWidth: 345 }} className={classes.card}>
+    <Card sx={{ maxWidth: 345 }} className={classes.card} onClick={f1}>
       <CardActionArea>
         <div>
           {/* <div className={classes.cardOverlay}></div> */}
@@ -119,7 +128,7 @@ const Tour = ({ tour, setCurrentId }) => {
           </p>
           {/* <p className={classes.paraFooter}>
           </p> */}
-          <Button size="small" color="primary">
+          <Button size="small" color="primary" onClick={f1}>
             Details
           </Button>
         </div>
