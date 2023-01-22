@@ -20,10 +20,10 @@ const Home = () => {
   return (
     <>
       <Grow in>
-        {/* <Container className={classes.mainContainer}> */}
-        {/* <Tours setCurrentId={setCurrentId} /> */}
-        <TourDetail />
-        {/* </Container> */}
+        <Container className={classes.mainContainer}>
+          <Tours setCurrentId={setCurrentId} />
+          {/* <TourDetail /> */}
+        </Container>
       </Grow>
       <Footer />
     </>
