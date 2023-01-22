@@ -10,7 +10,7 @@ const API = axios.create({ baseURL: "http://localhost:4000" });
 //   return req;
 // });
 
-// get 5 tours new
+// get 5 tours new addddd
 export const fetchPosts = () => API.get("/api/v1/tours/top-5-cheap");
 
 export const createPost = (newPost) => API.post("/posts", newPost);
