@@ -25,6 +25,8 @@ router
     tourController.deleteTour
   );
 
+
+router.route('/tour/:id').get(tourController.getOneTour);
 //POST /tour/2478f8g/reviews
 //GET /tour/2478f8g/reviews
 //GET /tour/2478f8g/reviews/94974ffhgh
