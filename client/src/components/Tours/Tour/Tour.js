@@ -20,12 +20,12 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { likePost, deletePost,getOneTour } from "../../../actions/tours";
+import { likePost, deletePost, getOneTour } from "../../../actions/tours";
 import { useHistory } from "react-router-dom";
 import useStyles from "./styles";
 const Tour = ({ tour, setCurrentId }) => {
   const dispatch = useDispatch();
-  const history=useHistory();
+  const history = useHistory();
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem("profile"));
   const Likes = () => {
@@ -56,12 +56,10 @@ const Tour = ({ tour, setCurrentId }) => {
       </>
     );
   };
-  function f1(e)
-  {
-    console.log("hi",tour.id);
+  function f1(e) {
+    console.log("hi", tour.id);
     dispatch(getOneTour(tour.id));
     history.push(`/tour/:${tour.id}`);
-
   }
   console.log(tour, "tour");
   return (
@@ -91,11 +89,11 @@ const Tour = ({ tour, setCurrentId }) => {
           <div className={classes.mainIconDiv}>
             <div className={classes.iconDiv}>
               <LocationOnOutlined className={classes.iconColor} />
-              <span>{tour?.startLocation?.description}</span>
+              <span>{tour?.difficulty}</span>
             </div>
             <div className={classes.iconDiv}>
               <CalendarTodayOutlinedIcon className={classes.iconColor} />
-              <span>{tour?.startLocation?.description}</span>
+              <span>{tour?.duration} Days</span>
             </div>
           </div>
           <div className={classes.mainIconDiv}>
@@ -105,7 +103,7 @@ const Tour = ({ tour, setCurrentId }) => {
             </div>
             <div className={classes.iconDiv}>
               <PermIdentityOutlinedIcon className={classes.iconColor} />
-              <span>{tour?.startLocation?.description}</span>
+              <span>{tour?.maxGroupSize} Person</span>
             </div>
           </div>
           {/* <Typography gutterBottom variant="h5" component="div">
@@ -120,11 +118,11 @@ const Tour = ({ tour, setCurrentId }) => {
       <CardActions>
         <div className={classes.cardFooter}>
           <p className={classes.paraFooter}>
-            <span className={classes.price}>$2997</span>{" "}
+            <span className={classes.price}>Rs. {tour?.price}</span>{" "}
             <span className={classes.perPerson}>Per person</span>
             <div></div>
-            <span className={classes.price}>4.3</span>{" "}
-            <span className={classes.perPerson}>rating (7)</span>
+            <span className={classes.price}>{tour?.ratingsAverage}</span>{" "}
+            <span className={classes.perPerson}>rating</span>
           </p>
           {/* <p className={classes.paraFooter}>
           </p> */}

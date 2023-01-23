@@ -21,13 +21,8 @@ const Home = () => {
     <>
       <Grow in>
         <Container className={classes.mainContainer}>
-<<<<<<< HEAD
           <Tours setCurrentId={setCurrentId} />
           {/* <TourDetail /> */}
-=======
-        <Tours setCurrentId={setCurrentId} />
-        {/* <TourDetail /> */}
->>>>>>> 3aec86cb208f569977c0e5a1c7a2f77dc9291535
         </Container>
       </Grow>
       <Footer />

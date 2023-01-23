@@ -8,18 +8,13 @@ import Footer from "./components/nav_bar/Footer";
 import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
 import Admin from "./components/Admin/Admin";
-<<<<<<< HEAD
-=======
 import { useSelector } from "react-redux";
->>>>>>> 3aec86cb208f569977c0e5a1c7a2f77dc9291535
 import TourDetail from "./components/Tours/TourDetail/TourDetail";
 const App = () => {
   // const dispatch = useDispatch();
   // useEffect(() => {
   //   dispatch(getTours());
   // }, []);
-  
-
 
   return (
     <BrowserRouter>
@@ -29,11 +24,7 @@ const App = () => {
           <Route path="/" exact component={Home} />
           <Route path="/auth" exact component={Auth} />
           <Route path="/admin" exact component={Admin} />
-<<<<<<< HEAD
-          <Route path="/tourDetail" exact component={TourDetail} />
-=======
-          <Route path="/tour/:id" exact component={TourDetail}/>
->>>>>>> 3aec86cb208f569977c0e5a1c7a2f77dc9291535
+          <Route path="/tour/:id" exact component={TourDetail} />
         </Switch>
         {/* <Footer /> */}
       </Container>

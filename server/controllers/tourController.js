@@ -49,9 +49,9 @@ exports.getAllTours = catchAsync(async (req, res, next) => {
     },
   });
 });
-exports.getOneTour=catchAsync(async (req, res, next) => {
+exports.getOneTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findById(req.params.id);
-   console.log("hello nbro",tour);
+  console.log('hello nbro', tour);
 
   if (!tour) {
     return next(new AppError('No tour found with this ID', 404));
@@ -59,11 +59,12 @@ exports.getOneTour=catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     data: {
-      tour
+      tour,
     },
   });
 });
 exports.getTour = catchAsync(async (req, res, next) => {
+  console.log('hi');
   const tour = await Tour.findById(req.params.id).populate('reviews');
 
   if (!tour) {

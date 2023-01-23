@@ -68,9 +68,11 @@ export default makeStyles((theme) => ({
     fontWeight: "510",
     lineHeight: "1.7",
     color: "#777",
+    whiteSpace: "break-spaces",
   },
   paragraph: {
     fontSize: ".9rem",
+    whiteSpace: "break-spaces",
     //     font-family: "Lato", sans-serif,
     // font-weight: 400,
     // line-height: 1.7,
@@ -191,14 +193,15 @@ export default makeStyles((theme) => ({
   },
   story: {
     width: "58%",
-    margin: " 4rem auto",
+    margin: "1.5rem 2.6rem",
     // -webkit-box-shadow: 0 3rem 6rem rgba(0,0,0,0.1),
     boxShadow: "0 3rem 6rem rgba(0,0,0,0.1)",
     backgroundColor: "rgba(255,255,255,0.6)",
     borderRadius: "3px",
     padding: " 3rem",
-    paddingLeft: "6rem",
-    paddingLeft: "9rem",
+
+    paddingLeft: "5rem",
+    paddingTop: "2rem",
     fontSize: "1rem",
     // -webkit-transform: skewX(-12deg),
     transform: "skewX(-12deg)",
@@ -264,6 +267,7 @@ export default makeStyles((theme) => ({
   book__form: {
     width: "50%",
     padding: "6rem",
+    paddingTop: "2rem",
   },
   form: {},
   headingMedium: {},

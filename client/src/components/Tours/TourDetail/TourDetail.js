@@ -1,16 +1,19 @@
 import React from "react";
 import useStyles from "./styles";
-import logo from "../../../images/memories.png";
+// import logo from "../../../images/memories.png";
 import { Grid } from "@material-ui/core";
 import LanguageIcon from "@material-ui/icons/Language";
 import { useSelector } from "react-redux";
+import DayCard from "./DayCard";
+import Comment from "./Comment";
+import Booking from "./Booking";
 const TourDetail = () => {
   const classes = useStyles();
-  const posts = useSelector((state) => state.tours);
-  console.log("bye",posts);
-  return (
-    posts===null?
-    <h1>PLEASE WAIT..</h1>:(
+  const tour = useSelector((state) => state.tours);
+  console.log("bye", tour);
+  return tour === null ? (
+    <h1>PLEASE WAIT..</h1>
+  ) : (
     <div>
       <header
         style={{
@@ -19,15 +22,18 @@ const TourDetail = () => {
         className={classes.header}
       >
         <div className={classes.logoBox}>
-          <img
+          {/* <img
             className={classes.logoimage}
             height="60"
-            src={logo}
+            // src={logo}
             alt="Logo"
-          />
+          /> */}
         </div>
         <div className={classes.textBox}>
-          <h1 className={classes.primaryHeading}>outoor</h1>
+          <h1 className={classes.primaryHeading}>{tour?.name}</h1>
+          <h3 className={classes.smallHeading}>
+            Difficulty: {tour?.difficulty}
+          </h3>
         </div>
       </header>
       <main>
@@ -46,19 +52,12 @@ const TourDetail = () => {
               <h3 className={classes.smallHeading}>
                 You're going to fall in love with nature
               </h3>
-              <p className={classes.paragraph}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Aperiam, ipsum sapiente aspernatur libero repellat quis
-                consequatur ducimus quam nisi exercitationem omnis earum qui.
-              </p>
+              <p className={classes.paragraph}>{tour?.description}</p>
 
               <h3 className={classes.smallHeading}>
                 Live adventures like you never have before
               </h3>
-              <p className={classes.paragraph}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Asperiores nulla deserunt voluptatum nam.
-              </p>
+              <p className={classes.paragraph}>{tour?.summary}</p>
 
               <a href="#" className={classes.btnText}>
                 Learn more →
@@ -95,46 +94,9 @@ const TourDetail = () => {
               columnSpacing={{ xs: 1, sm: 2, md: 3 }}
               className={classes.rowFeature}
             >
-              <Grid item xs={3}>
-                <div className={classes.featureBox}>
-                  <LanguageIcon className={classes.iconFeature} />
-                  <h3 className={classes.smallHeading}>Explore the world</h3>
-                  <p className={classes.paragraph}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Aperiam, ipsum sapiente aspernatur.
-                  </p>
-                </div>
-              </Grid>
-              <Grid item xs={3}>
-                <div className={classes.featureBox}>
-                  <LanguageIcon className={classes.iconFeature} />
-                  <h3 className={classes.smallHeading}>Explore the world</h3>
-                  <p className={classes.paragraph}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Aperiam, ipsum sapiente aspernatur.
-                  </p>
-                </div>
-              </Grid>
-              <Grid item xs={3}>
-                <div className={classes.featureBox}>
-                  <LanguageIcon className={classes.iconFeature} />
-                  <h3 className={classes.smallHeading}>Explore the world</h3>
-                  <p className={classes.paragraph}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Aperiam, ipsum sapiente aspernatur.
-                  </p>
-                </div>
-              </Grid>
-              <Grid item xs={3}>
-                <div className={classes.featureBox}>
-                  <LanguageIcon className={classes.iconFeature} />
-                  <h3 className={classes.smallHeading}>Explore the world</h3>
-                  <p className={classes.paragraph}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Aperiam, ipsum sapiente aspernatur.
-                  </p>
-                </div>
-              </Grid>
+              {tour?.locations?.map((data) => (
+                <DayCard data={data} />
+              ))}
             </Grid>
           </section>
         </div>
@@ -157,133 +119,20 @@ const TourDetail = () => {
               We make people genuinely happy
             </h2>
           </div>
-          <div className={classes.row}>
-            <div className={classes.story}>
-              <figure className={classes.story__shape}>
-                <img
-                  src="https://natours.netlify.app/img/nat-8.jpg"
-                  alt="Person on a tour"
-                  className={classes.story__img}
-                />
-                <figcaption className={classes.story__caption}>
-                  Mary Smith
-                </figcaption>
-              </figure>
-              <div className={classes.story__text}>
-                <h3 className={classes.smallHeading}>
-                  I had the best week ever with my family
-                </h3>
-                <p className={classes.paragraph}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Aperiam, ipsum sapiente aspernatur libero repellat quis
-                  consequatur ducimus quam nisi exercitationem omnis earum qui.
-                  Aperiam, ipsum sapiente aspernatur libero repellat quis
-                  consequatur ducimus quam nisi exercitationem omnis earum qui.
-                </p>
-              </div>
-            </div>
-            <div className={classes.story}>
-              <figure className={classes.story__shape}>
-                <img
-                  src="https://natours.netlify.app/img/nat-8.jpg"
-                  alt="Person on a tour"
-                  className={classes.story__img}
-                />
-                <figcaption className={classes.story__caption}>
-                  Mary Smith
-                </figcaption>
-              </figure>
-              <div className={classes.story__text}>
-                <h3 className={classes.smallHeading}>
-                  I had the best week ever with my family
-                </h3>
-                <p className={classes.paragraph}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Aperiam, ipsum sapiente aspernatur libero repellat quis
-                  consequatur ducimus quam nisi exercitationem omnis earum qui.
-                  Aperiam, ipsum sapiente aspernatur libero repellat quis
-                  consequatur ducimus quam nisi exercitationem omnis earum qui.
-                </p>
-              </div>
-            </div>
-          </div>
         </section>
+        <Comment />
         <section className={classes.sectionBook}>
           <div className={classes.row}>
             <div className={classes.book}>
               <div className={classes.book__form}>
-                <form action="#" className={classes.form}>
-                  <div className={classes.headingMedium}>
-                    <h2 className={classes.headingSecondary}>
-                      Start booking now
-                    </h2>
-                  </div>
-
-                  <div class={classes.form__group}>
-                    <input
-                      type="text"
-                      class="form__input"
-                      placeholder="Full name"
-                      id="name"
-                      required=""
-                    />
-                    <label for="name" class="form__label">
-                      Full name
-                    </label>
-                  </div>
-
-                  <div class="form__group">
-                    <input
-                      type="email"
-                      class="form__input"
-                      placeholder="Email address"
-                      id="email"
-                      required=""
-                    />
-                    <label for="email" class="form__label">
-                      Email address
-                    </label>
-                  </div>
-
-                  <div class="form__group u-margin-bottom-medium">
-                    <div class="form__radio-group">
-                      <input
-                        type="radio"
-                        class="form__radio-input"
-                        id="small"
-                        name="size"
-                      />
-                      <label for="small" class="form__radio-label">
-                        <span class="form__radio-button"></span>
-                        Small tour group
-                      </label>
-                    </div>
-
-                    <div class="form__radio-group">
-                      <input
-                        type="radio"
-                        class="form__radio-input"
-                        id="large"
-                        name="size"
-                      />
-                      <label for="large" class="form__radio-label">
-                        <span class="form__radio-button"></span>
-                        Large tour group
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="form__group">
-                    <button class="btn btn--green">Next step →</button>
-                  </div>
-                </form>
+                <Booking price={tour?.price} />
               </div>
             </div>
           </div>
         </section>
       </main>
     </div>
-  ));
+  );
 };
 
 export default TourDetail;
