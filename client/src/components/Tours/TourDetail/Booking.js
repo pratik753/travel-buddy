@@ -1,11 +1,13 @@
 import { TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import useStyles from "./styles";
 
 const Booking = ({ price }) => {
   const classes = useStyles();
+  const history = useHistory();
   const [userBooking, setUserBooking] = useState({
     name: "",
     email: "",
@@ -25,6 +27,7 @@ const Booking = ({ price }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(userBooking, "userBooking");
+    history.push("/successful");
   };
 
   return (

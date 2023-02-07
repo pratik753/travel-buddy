@@ -87,12 +87,8 @@ const AddTour = () => {
     quality: "",
     trailer: "",
     img1: "",
-    // img2: "",
-    // img3: "",
   });
-  // useEffect(() => {
-  //   createStockItem(tour);
-  // });
+
   const titleHandler = (e) => {
     setMovieName({
       ...tour,
@@ -216,14 +212,6 @@ const AddTour = () => {
     });
   };
 
-  // const clearData = () => {
-  //   setMovieName({
-  //     description: "",
-  //     type: "",
-  //     coordinates: [],
-  //     day: 1,
-  //   });
-  // };
   const clearLoactionData = () => {
     setDataLocation({
       description: "",

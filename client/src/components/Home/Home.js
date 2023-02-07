@@ -12,8 +12,6 @@ const Home = () => {
   const classes = useStyles();
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
-  // const classes = useStyles();
-
   useEffect(() => {
     dispatch(getTours());
   }, [currentId, dispatch]);

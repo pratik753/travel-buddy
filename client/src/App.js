@@ -10,6 +10,7 @@ import Auth from "./components/Auth/Auth";
 import Admin from "./components/Admin/Admin";
 import { useSelector } from "react-redux";
 import TourDetail from "./components/Tours/TourDetail/TourDetail";
+import Successful from "./components/Tours/TourDetail/Successful";
 const App = () => {
   // const dispatch = useDispatch();
   // useEffect(() => {
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/auth" exact component={Auth} />
           <Route path="/admin" exact component={Admin} />
           <Route path="/tour/:id" exact component={TourDetail} />
+          <Route path="/successful" exact component={Successful} />
         </Switch>
         {/* <Footer /> */}
       </Container>

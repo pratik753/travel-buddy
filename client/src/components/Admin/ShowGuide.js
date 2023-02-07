@@ -8,11 +8,11 @@ import classes from "./cssAdmin.module.css";
 // import { getStockItem } from "../../action/stock";
 const data = [
   {
-    id: 11,
-    partNo: 1222,
-    partName: "www",
-    quantity: "wwww",
-    cPrice: "www",
+    id: 1,
+    guideNo: 1,
+    guideName: "Pratik Kumar",
+    no_of_Trips: "05",
+    age: "20",
   },
 ];
 const ShowGuide = () => {
@@ -33,11 +33,10 @@ const ShowGuide = () => {
       for (const key in allStock.data) {
         stockData.push({
           id: key,
-          partNo: allStock.data[key].partNo,
-          partName: allStock.data[key].partName,
-          quantity: allStock.data[key].quantity,
-          mPrice: allStock.data[key].mPrice,
-          cPrice: allStock.data[key].cPrice,
+          guideNo: allStock.data[key].guideNo,
+          guideName: allStock.data[key].guideName,
+          no_of_Trips: allStock.data[key].no_of_Trips,
+          age: allStock.data[key].age,
         });
       }
       console.log(stockData);
@@ -50,11 +49,10 @@ const ShowGuide = () => {
     return allStockItem.map((data) => (
       <tr key={i}>
         <td>{i++}</td>
-        <td>{data.partNo}</td>
-        <td>{data.partName}</td>
-        <td>{data.quantity}</td>
-        <td>{data.mPrice}</td>
-        <td>{data.cPrice}</td>
+        <td>{data.guideNo}</td>
+        <td>{data.guideName}</td>
+        <td>{data.no_of_Trips}</td>
+        <td>{data.age}</td>
       </tr>
     ));
   };
@@ -81,7 +79,7 @@ const ShowGuide = () => {
                 <th>Guide No.</th>
                 <th>Guide Name</th>
                 <th>No. of Trips</th>
-                <th>Photo</th>
+                {/* <th>Photo</th> */}
                 <th>Age</th>
                 {/* <th>Remove</th> */}
               </thead>

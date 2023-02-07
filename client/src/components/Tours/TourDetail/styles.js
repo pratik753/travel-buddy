@@ -272,4 +272,10 @@ export default makeStyles((theme) => ({
   form: {},
   headingMedium: {},
   headingSecondary: {},
+  imgStyle: {
+    // display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "50%",
+  },
 }));
